@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  >
+    <mat-icon>collections_bookmark</mat-icon>
+  </button>
+  <span>BOOKIFY</span>
+  <span class="spacer"></span>
+  <div>
+    <button mat-button [matMenuTriggerFor]="menu">
+      User<mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>Profile</button>
+      <button mat-menu-item>Logout</button>
+    </mat-menu>
+  </div>
+</mat-toolbar>
