@@ -11,6 +11,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     RegisterComponent,
     NavComponent,
     Page404Component,
+    ShoppingCartComponent,
+
   ],
   imports: [
     BrowserModule,
