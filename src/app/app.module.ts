@@ -16,6 +16,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RenterComponent } from './components/renter/renter.component';
 import { ManagerComponent } from './components/manager/manager.component';
+import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+import { RoleGuard } from './guards/role.guard';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { ManagerComponent } from './components/manager/manager.component';
     Page404Component,
     RenterComponent,
     ManagerComponent,
+    ForbiddenComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +41,7 @@ import { ManagerComponent } from './components/manager/manager.component';
     HttpClientModule,
     MatDialogModule,
   ],
-  providers: [UserService],
+  providers: [RoleGuard, UserService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
