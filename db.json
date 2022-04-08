@@ -1,0 +1,44 @@
+{
+  "users": [
+    {
+      "email": "tienle@gmail.com",
+      "password": "$2a$10$EECYCXb3irYxKzoXZQrPN.t6VRaK1XWPyWFex.cuYC6/44DNYc2ku",
+      "first_name": "Tien",
+      "last_name": "Le",
+      "role_id": 1,
+      "address": "123 abc",
+      "phone": "5428745123",
+      "id": 1
+    },
+    {
+      "email": "johndoe@gmail.com",
+      "password": "$2a$10$i.DhTBj3FkxB6hlRg7J6zuoQMawxNdgoGBahtpd1bansxVH/6hCQ6",
+      "first_name": "John",
+      "last_name": "Doe",
+      "role_id": 2,
+      "address": "5487 abc",
+      "phone": "8528745123",
+      "id": 2
+    },
+    {
+      "email": "janedoe@gmail.com",
+      "password": "$2a$10$gsJb072JjkCIIwR6OlCaMuaRc5kqHdlpCYU7UmBfJ42wtgC08o1pW",
+      "first_name": "Jane",
+      "last_name": "Doe",
+      "role_id": 2,
+      "address": "8456 abc",
+      "phone": "2358745123",
+      "id": 3
+    },
+    {
+      "email": "test01@gmail.com",
+      "password": "$2a$10$OigeHW1iYz5dEmOarXN7vuImS0HrKjwZ66D3ro6JWU/DeLQ.qyPZK",
+      "first_name": "test",
+      "last_name": "testy",
+      "address": "fdsfs",
+      "phone": "2547896521",
+      "role_id": 2,
+      "id": 5
+    }
+  ]
+}

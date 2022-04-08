@@ -8,13 +8,13 @@
   </button>
   <span>BOOKIFY</span>
   <span class="spacer"></span>
-  <div>
+  <div *ngIf="isLoggedIn()">
     <button mat-button [matMenuTriggerFor]="menu">
-      User<mat-icon>arrow_drop_down</mat-icon>
+      {{ getUserFullName() }}<mat-icon>arrow_drop_down</mat-icon>
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>Profile</button>
-      <button mat-menu-item>Logout</button>
+      <button mat-menu-item (click)="logout()">Logout</button>
     </mat-menu>
   </div>
 </mat-toolbar>
