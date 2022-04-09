@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 const AUTH_API = 'http://localhost:3000/';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+
+  // return the response as a HTTPResponse instead of the body only by default
   observe: 'response' as 'response',
 };
 

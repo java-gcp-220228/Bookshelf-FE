@@ -18,6 +18,7 @@ import { RenterComponent } from './components/renter/renter.component';
 import { ManagerComponent } from './components/manager/manager.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { RoleGuard } from './guards/role.guard';
+import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { RoleGuard } from './guards/role.guard';
     RenterComponent,
     ManagerComponent,
     ForbiddenComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
