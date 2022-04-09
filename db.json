@@ -1,4 +1,26 @@
 {
+  "books": [
+    {
+      "id": 2,
+      "isbn": "2224567890",
+      "title": "Narnina",
+      "author": "C.S Lewis",
+      "publisher": "HarborColon",
+      "publish_date": "01/01/1950",
+      "genre": "Fantasy",
+      "status": "Available"
+    },
+    {
+      "id": 3,
+      "isbn": "4444567890",
+      "title": "Narnina",
+      "author": "C.S Lewis",
+      "publisher": "HarborColon",
+      "publish_date": "01/01/1950",
+      "genre": "Fantasy",
+      "status": "Available"
+    }
+  ],
   "users": [
     {
       "email": "tienle@gmail.com",
