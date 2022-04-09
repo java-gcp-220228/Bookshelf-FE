@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
 
     // if user is not logged in then show them the login page
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      emailId: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
@@ -59,10 +59,11 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       this.auth.login(this.loginForm.value).subscribe({
         next: (res) => {
-          this.userService.setToken(res.body.accessToken);
-          this.userService.setUser(res.body.user);
+          console.log(res);
+          this.userService.setToken(res.headers.get('token'));
+          this.userService.setUser(res.body);
 
-          const role = res.body.user.role_id;
+          const role = res.body.userRole.id;
           if (role === 1) {
             this.router.navigate(['/manager']);
           } else {
