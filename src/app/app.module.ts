@@ -19,6 +19,7 @@ import { ManagerComponent } from './components/manager/manager.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { RoleGuard } from './guards/role.guard';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { AvailibityPipe } from './pipes/availibity.pipe';
 
 
 
@@ -33,6 +34,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     ManagerComponent,
     ForbiddenComponent,
     ConfirmDialogComponent,
+    AvailibityPipe,
     
 
   ],

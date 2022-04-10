@@ -71,11 +71,12 @@
       <!-- actions column -->
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>ACTIONS</th>
-        <td mat-cell *matCellDef="let row">z
-          <button mat-raised-button aria-disabled=[rent]="canBeRented" color="warn" (click)="confirmDialog(row.id, row.status) ">
-            <mat-icon>Add-to-Cart</mat-icon>
+        <td mat-cell *matCellDef="let row">
+          <button mat-raised-button disabled='{{row.status | availibity}}' color="warn" (click)="confirmDialog(row.id, row.status) ">
+            <mat-icon>+</mat-icon>
             Add to Cart
-          </button> <!-- this should be invisable if book is already rented-->
+          </button>
+          <!-- this should be disabled if book is already rented-->
         </td>
       </ng-container>
       
