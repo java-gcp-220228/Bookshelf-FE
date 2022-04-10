@@ -18,7 +18,7 @@ const routes: Routes = [
     path: 'renter',
     component: RenterComponent,
     canActivate: [RoleGuard],
-    data: { expectedRole: 2 },
+    data: { expectedRole: 1 }, //change back to 2
   },
   {
     path: 'manager',

@@ -18,4 +18,9 @@ export class BookService {
   deleteBook(id: number) {
     return this.http.delete<any>(URL + '/books/' + id);
   }
+
+  rentBook(id: number) {
+    return this.http.get<any>(URL + '/books');
+    // return this.http.put<any>(URL + '/rent/' + id); //todo needs to follow the proper backend naming
+  }
 }

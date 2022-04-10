@@ -10,7 +10,9 @@ import { UserService } from 'src/app/services/user.service';
 export class NavComponent implements OnInit {
   constructor(private userService: UserService, private router: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    data: { expectedRole: 1 }
+  }
 
   public isLoggedIn() {
     return this.userService.isLoggedIn();

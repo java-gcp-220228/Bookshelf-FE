@@ -20,6 +20,8 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { RoleGuard } from './guards/role.guard';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +33,8 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     ManagerComponent,
     ForbiddenComponent,
     ConfirmDialogComponent,
+    
+
   ],
   imports: [
     BrowserModule,
