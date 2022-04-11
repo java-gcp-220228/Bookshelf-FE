@@ -69,8 +69,8 @@ export class CartComponent implements OnInit {
 
   editRequest(row: any) {}
 
-  confirmDialog(id: number, status: string) {
-    const message = 'Are you sure you want to check out this book?';
+  confirmDialog(id: number) {
+    const message = 'Are you sure you want to remove this book?';
     const dialogData = new ConfirmDialogModel('Confirm Add', message);
     this.dialog
       .open(ConfirmDialogComponent, {
@@ -81,7 +81,7 @@ export class CartComponent implements OnInit {
       .afterClosed()
       .subscribe((result) => {
         if (result === true) {
-          this.rentBook(id, status);
+          this.removeBook(id);
           this.getAllBooks();
         }
       });
@@ -100,18 +100,14 @@ export class CartComponent implements OnInit {
     console.log("is enabled")
   }
 
-  rentBook(id: number, status : String) {
-    if(status !== "Available") {
-      return;
-    }
-    this.bookService.rentBook(id).subscribe({
-      next: (res) => {
-        this.openSnackBar('Added to cart successfully.');
-      },
-      error: (err) => {
-        this.openSnackBar(err.error);
-      },
-    });
+  removeBook(id: number) {
+
+    if(this.cartService.removeFromRentQueue(id)){
+      this.openSnackBar('Removed from Shopping Cart')
+    } else {
+      this.openSnackBar('Could not remove')
+    };
+    
   }
 
   checkOut(){

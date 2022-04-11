@@ -122,7 +122,11 @@ export class RenterComponent implements OnInit {
       return;
     }
     
-    this.cartServie.addToRentQueue(id, isbn, title, author, publisher, publish_date, genre, status);/*.subscribe({
+    if(this.cartServie.addToRentQueue(id, isbn, title, author, publisher, publish_date, genre, status)){
+      this.openSnackBar('Added to cart successfully.');
+    } else {
+      this.openSnackBar('Item already in cart')
+    };/*.subscribe({
       next: (res) => {
         //add to rent books queue array
         

@@ -36,6 +36,17 @@ export class CartService {
     }
   }
 
+  removeFromRentQueue(id:number){
+    let matchFound = false;
+    this.cart.forEach((value,index) =>{
+      if(value.id === id){
+        matchFound = true;
+        this.cart.splice(index,1);
+      }
+    })
+    return matchFound;
+  }
+
   getItemsInCart(){
     return this.cart;
   }
