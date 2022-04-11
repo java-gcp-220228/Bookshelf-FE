@@ -20,6 +20,7 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { RoleGuard } from './guards/role.guard';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
 import { AvailibityPipe } from './pipes/availibity.pipe';
+import { CartComponent } from './components/cart/cart.component';
 
 
 
@@ -35,6 +36,7 @@ import { AvailibityPipe } from './pipes/availibity.pipe';
     ForbiddenComponent,
     ConfirmDialogComponent,
     AvailibityPipe,
+    CartComponent,
     
 
   ],

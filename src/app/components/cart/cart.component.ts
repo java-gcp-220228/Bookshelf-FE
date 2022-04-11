@@ -4,7 +4,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BookService } from 'src/app/services/book.service';
-import { CartComponent } from '../cart/cart.component';
 import {
   ConfirmDialogComponent,
   ConfirmDialogModel,
@@ -16,11 +15,11 @@ import {
 } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-renter',
-  templateUrl: './renter.component.html',
-  styleUrls: ['./renter.component.css']
+  selector: 'app-cart',
+  templateUrl: './cart.component.html',
+  styleUrls: ['./cart.component.css']
 })
-export class RenterComponent implements OnInit {
+export class CartComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
@@ -39,29 +38,28 @@ export class RenterComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(
+  constructor(    
     private bookService: BookService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
-  ) {}
+    ) { }
 
   ngOnInit(): void {
     this.getAllBooks();
   }
-  
+  rentedBooks: number[] = [2,3];
 
   getAllBooks(): any {
     this.bookService.getAllBooks().subscribe({
       next: (res: any) => {
-        this.dataSource = new MatTableDataSource(res);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.paginator.pageSize = 10;        
-        
-        this.sort.sort({
-          id: 'id',
-          start: 'desc',
-          disableClear: false,
+        console.log(res.id, res.status);
+        this.rentedBooks.forEach((value) =>{
+          if(res.id !== value){
+            console.log(res.id, res.status);
+            this.includeBook(res);
+          }
         });
+
       },
       error: (err: any) => {
         console.log(err);
@@ -69,6 +67,17 @@ export class RenterComponent implements OnInit {
     });
   }
 
+  includeBook(res: any){
+    this.dataSource = new MatTableDataSource(res);
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.paginator.pageSize = 10;        
+    
+    this.sort.sort({
+      id: 'id',
+      start: 'desc',
+      disableClear: false,
+    });
+  };
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     console.log(filterValue);
@@ -125,5 +134,9 @@ export class RenterComponent implements OnInit {
       },
     });
   }
-  
+
+  checkOut(){
+
+  }
+
 }
