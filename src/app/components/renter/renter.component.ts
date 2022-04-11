@@ -4,7 +4,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BookService } from 'src/app/services/book.service';
-import { CartComponent } from '../cart/cart.component';
+import { CartService } from 'src/app/services/cart.service';
+import { Router } from '@angular/router';
 import {
   ConfirmDialogComponent,
   ConfirmDialogModel,
@@ -41,6 +42,8 @@ export class RenterComponent implements OnInit {
 
   constructor(
     private bookService: BookService,
+    private cartServie: CartService,
+    private router: Router,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
   ) {}
@@ -81,7 +84,8 @@ export class RenterComponent implements OnInit {
 
   editRequest(row: any) {}
 
-  confirmDialog(id: number, status: string) {
+  confirmDialog(id: number, isbn: number, title: string, author: string, publisher: string, 
+    publish_date: string, genre: string, status: string) {
     const message = 'Are you sure you want to check out this book?';
     const dialogData = new ConfirmDialogModel('Confirm Add', message);
     this.dialog
@@ -93,7 +97,7 @@ export class RenterComponent implements OnInit {
       .afterClosed()
       .subscribe((result) => {
         if (result === true) {
-          this.rentBook(id, status);
+          this.rentBook(id, isbn, title, author, publisher, publish_date, genre, status);
           this.getAllBooks();
         }
       });
@@ -112,18 +116,26 @@ export class RenterComponent implements OnInit {
     console.log("is enabled")
   }
 
-  rentBook(id: number, status : String) {
+  rentBook(id: number, isbn: number,title: string, author: string, publisher: string, 
+    publish_date: string, genre: string, status: string) {
     if(status !== "Available") {
       return;
     }
-    this.bookService.rentBook(id).subscribe({
+    
+    this.cartServie.addToRentQueue(id, isbn, title, author, publisher, publish_date, genre, status);/*.subscribe({
       next: (res) => {
+        //add to rent books queue array
+        
         this.openSnackBar('Added to cart successfully.');
       },
       error: (err) => {
         this.openSnackBar(err.error);
       },
-    });
+    });*/
   }
+  toCart(){
+      this.router.navigate(['cart'])
+  }
+  
   
 }
