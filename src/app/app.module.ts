@@ -19,6 +19,9 @@ import { ManagerComponent } from './components/manager/manager.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { RoleGuard } from './guards/role.guard';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+import { BookManagementDialogComponent } from './components/book-management-dialog/book-management-dialog.component';
+import { RentManagementComponent } from './components/rent-management/rent-management.component';
+import { RentDetailManagementComponent } from './components/rent-detail-management/rent-detail-management.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +34,9 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
     ManagerComponent,
     ForbiddenComponent,
     ConfirmDialogComponent,
+    BookManagementDialogComponent,
+    RentManagementComponent,
+    RentDetailManagementComponent,
   ],
   imports: [
     BrowserModule,

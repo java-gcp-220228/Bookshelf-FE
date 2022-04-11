@@ -1,0 +1,128 @@
+<h1 mat-dialog-title>{{ actionTitle }}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="bookForm">
+    <!-- isbn input -->
+    <mat-form-field appearance="outline">
+      <mat-label>ISBN</mat-label>
+      <input formControlName="isbn" matInput />
+      <div
+        *ngIf="
+          bookForm.controls['isbn'].invalid && bookForm.controls['isbn'].touched
+        "
+      >
+        Please enter a valid ISBN.
+      </div>
+    </mat-form-field>
+
+    <!-- title input -->
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input formControlName="title" matInput />
+      <div
+        *ngIf="
+          bookForm.controls['title'].invalid &&
+          bookForm.controls['title'].touched
+        "
+      >
+        Please enter title.
+      </div>
+    </mat-form-field>
+
+    <!-- author input -->
+    <mat-form-field appearance="outline">
+      <mat-label>Author</mat-label>
+      <input formControlName="author" matInput />
+      <div
+        *ngIf="
+          bookForm.controls['author'].invalid &&
+          bookForm.controls['author'].touched
+        "
+      >
+        Please enter author.
+      </div>
+    </mat-form-field>
+
+    <!-- publisher input -->
+    <mat-form-field appearance="outline">
+      <mat-label>Publisher</mat-label>
+      <input formControlName="publisher" matInput />
+      <div
+        *ngIf="
+          bookForm.controls['publisher'].invalid &&
+          bookForm.controls['publisher'].touched
+        "
+      >
+        Please enter publisher.
+      </div>
+    </mat-form-field>
+
+    <!-- publish_date input -->
+    <mat-form-field appearance="outline">
+      <mat-label>Publish Date</mat-label>
+      <input formControlName="publish_date" matInput />
+      <div
+        *ngIf="
+          bookForm.controls['publish_date'].invalid &&
+          bookForm.controls['publish_date'].touched
+        "
+      >
+        Please enter publish date.
+      </div>
+    </mat-form-field>
+
+    <!-- genre input -->
+    <mat-form-field appearance="outline">
+      <mat-label>Genre</mat-label>
+      <input formControlName="genre" matInput />
+      <div
+        *ngIf="
+          bookForm.controls['genre'].invalid &&
+          bookForm.controls['genre'].touched
+        "
+      >
+        Please enter genre.
+      </div>
+    </mat-form-field>
+
+    <!-- status input -->
+    <mat-form-field appearance="outline">
+      <mat-label>Status</mat-label>
+      <input formControlName="status" matInput />
+      <div
+        *ngIf="
+          bookForm.controls['status'].invalid &&
+          bookForm.controls['status'].touched
+        "
+      >
+        Please enter status.
+      </div>
+    </mat-form-field>
+
+    <!-- image url input -->
+    <mat-form-field appearance="outline">
+      <mat-label>Image Url</mat-label>
+      <input formControlName="image_url" matInput />
+      <div
+        *ngIf="
+          bookForm.controls['image_url'].invalid &&
+          bookForm.controls['image_url'].touched
+        "
+      >
+        Please enter image url.
+      </div>
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions [align]="'end'">
+  <button mat-raised-button color="warn" (click)="addBook()">
+    {{ actionBtn }}
+  </button>
+  <button
+    style="margin-left: 10px"
+    mat-raised-button
+    color="primary"
+    mat-dialog-close
+  >
+    Close
+  </button>
+</div>

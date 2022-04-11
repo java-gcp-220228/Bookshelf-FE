@@ -15,7 +15,15 @@ export class BookService {
     return this.http.get<any>(URL + '/books');
   }
 
-  deleteBook(id: number) {
-    return this.http.delete<any>(URL + '/books/' + id);
+  deleteBook(bookId: number) {
+    return this.http.delete<any>(URL + '/books/' + bookId);
+  }
+
+  createBook(data: any) {
+    return this.http.post<any>(URL + '/books', data);
+  }
+
+  updateBook(bookId: number, data: any) {
+    return this.http.put<any>(URL + '/books/' + bookId, data);
   }
 }

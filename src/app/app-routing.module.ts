@@ -5,6 +5,8 @@ import { LoginComponent } from './components/login/login.component';
 import { ManagerComponent } from './components/manager/manager.component';
 import { Page404Component } from './components/page404/page404.component';
 import { RegisterComponent } from './components/register/register.component';
+import { RentDetailManagementComponent } from './components/rent-detail-management/rent-detail-management.component';
+import { RentManagementComponent } from './components/rent-management/rent-management.component';
 import { RenterComponent } from './components/renter/renter.component';
 import { RoleGuard } from './guards/role.guard';
 
@@ -23,6 +25,18 @@ const routes: Routes = [
   {
     path: 'manager',
     component: ManagerComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRole: 1 },
+  },
+  {
+    path: 'manager-rent',
+    component: RentManagementComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRole: 1 },
+  },
+  {
+    path: 'manager-rent-detail',
+    component: RentDetailManagementComponent,
     canActivate: [RoleGuard],
     data: { expectedRole: 1 },
   },

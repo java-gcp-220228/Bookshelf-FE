@@ -39,4 +39,11 @@ export class UserService {
   public isLoggedIn() {
     return this.getUser() && this.getToken();
   }
+
+  public getRole() {
+    const user = localStorage.getItem(USER_KEY);
+    if (user) {
+      return JSON.parse(user).userRole.id;
+    }
+  }
 }

@@ -13,6 +13,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { BookManagementDialogComponent } from '../book-management-dialog/book-management-dialog.component';
 
 @Component({
   selector: 'app-manager',
@@ -91,7 +92,6 @@ export class ManagerComponent implements OnInit {
       .subscribe((result) => {
         if (result === true) {
           this.deleteBook(id);
-          this.getAllBooks();
         }
       });
   }
@@ -108,11 +108,23 @@ export class ManagerComponent implements OnInit {
   deleteBook(id: number) {
     this.bookService.deleteBook(id).subscribe({
       next: (res) => {
-        this.openSnackBar('Delete book successfully.');
+        this.openSnackBar('Book deleted successfully.');
+        this.getAllBooks();
       },
       error: (err) => {
         this.openSnackBar(err.error);
       },
     });
+  }
+
+  openDialog() {
+    this.dialog
+      .open(BookManagementDialogComponent, {
+        width: '50%',
+      })
+      .afterClosed()
+      .subscribe((value) => {
+        this.getAllBooks();
+      });
   }
 }
