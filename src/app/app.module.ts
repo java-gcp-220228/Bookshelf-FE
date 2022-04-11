@@ -22,6 +22,7 @@ import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dial
 import { BookManagementDialogComponent } from './components/book-management-dialog/book-management-dialog.component';
 import { RentManagementComponent } from './components/rent-management/rent-management.component';
 import { RentDetailManagementComponent } from './components/rent-detail-management/rent-detail-management.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { RentDetailManagementComponent } from './components/rent-detail-manageme
     BookManagementDialogComponent,
     RentManagementComponent,
     RentDetailManagementComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
