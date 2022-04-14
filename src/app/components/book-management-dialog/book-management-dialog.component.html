@@ -56,14 +56,14 @@
       </div>
     </mat-form-field>
 
-    <!-- publish_date input -->
+    <!-- publishDate input -->
     <mat-form-field appearance="outline">
       <mat-label>Publish Date</mat-label>
-      <input formControlName="publish_date" matInput />
+      <input formControlName="publishDate" matInput />
       <div
         *ngIf="
-          bookForm.controls['publish_date'].invalid &&
-          bookForm.controls['publish_date'].touched
+          bookForm.controls['publishDate'].invalid &&
+          bookForm.controls['publishDate'].touched
         "
       >
         Please enter publish date.
@@ -84,28 +84,14 @@
       </div>
     </mat-form-field>
 
-    <!-- status input -->
-    <mat-form-field appearance="outline">
-      <mat-label>Status</mat-label>
-      <input formControlName="status" matInput />
-      <div
-        *ngIf="
-          bookForm.controls['status'].invalid &&
-          bookForm.controls['status'].touched
-        "
-      >
-        Please enter status.
-      </div>
-    </mat-form-field>
-
     <!-- image url input -->
     <mat-form-field appearance="outline">
       <mat-label>Image Url</mat-label>
-      <input formControlName="image_url" matInput />
+      <input formControlName="imageUrl" matInput />
       <div
         *ngIf="
-          bookForm.controls['image_url'].invalid &&
-          bookForm.controls['image_url'].touched
+          bookForm.controls['imageUrl'].invalid &&
+          bookForm.controls['imageUrl'].touched
         "
       >
         Please enter image url.

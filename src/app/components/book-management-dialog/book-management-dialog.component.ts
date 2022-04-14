@@ -12,6 +12,7 @@ import {
 } from '@angular/material/snack-bar';
 import { BookService } from 'src/app/services/book.service';
 import { UserService } from 'src/app/services/user.service';
+import { Book } from 'src/app/models/book.model';
 
 @Component({
   selector: 'app-book-management-dialog',
@@ -40,27 +41,22 @@ export class BookManagementDialogComponent implements OnInit {
       title: ['', [Validators.required]],
       author: ['', [Validators.required]],
       publisher: ['', [Validators.required]],
-      publish_date: ['', [Validators.required]],
+      publishDate: ['', [Validators.required]],
       genre: ['', [Validators.required]],
-      status: ['', [Validators.required]],
-      image_url: [''],
+      imageUrl: [''],
     });
 
     if (this.editData) {
       this.actionTitle = 'Update book';
       this.actionBtn = 'Update';
-      //this.receiptUrl = this.editData.reimbursementReceipt;
 
       this.bookForm.controls['isbn'].setValue(this.editData.isbn);
       this.bookForm.controls['title'].setValue(this.editData.title);
       this.bookForm.controls['author'].setValue(this.editData.author);
       this.bookForm.controls['publisher'].setValue(this.editData.publisher);
-      this.bookForm.controls['publish_date'].setValue(
-        this.editData.publish_date
-      );
+      this.bookForm.controls['publishDate'].setValue(this.editData.publishDate);
       this.bookForm.controls['genre'].setValue(this.editData.genre);
-      this.bookForm.controls['status'].setValue(this.editData.status);
-      this.bookForm.controls['image_url'].setValue(this.editData.image_url);
+      this.bookForm.controls['imageUrl'].setValue(this.editData.imageUrl);
     }
   }
 
@@ -75,28 +71,31 @@ export class BookManagementDialogComponent implements OnInit {
 
   addBook() {
     if (!this.editData) {
-      var formData: any = new FormData();
-      formData.append('isbn', this.bookForm.get('isbn')?.value);
-      formData.append('title', this.bookForm.get('title')?.value);
-      formData.append('author', this.bookForm.get('author')?.value);
-      formData.append('publisher', this.bookForm.get('publisher')?.value);
-      formData.append('publish_date', this.bookForm.get('publish_date')?.value);
-      formData.append('genre', this.bookForm.get('genre')?.value);
-      formData.append('status', this.bookForm.get('status')?.value);
-      formData.append('image_url', this.bookForm.get('image_url')?.value);
+      // var formData: FormData = new FormData();
+      // formData.append('isbn', this.bookForm.get('isbn')?.value);
+      // formData.append('title', this.bookForm.get('title')?.value);
+      // formData.append('author', this.bookForm.get('author')?.value);
+      // formData.append('publisher', this.bookForm.get('publisher')?.value);
+      // formData.append('publishDate', this.bookForm.get('publishDate')?.value);
+      // formData.append('genre', this.bookForm.get('genre')?.value);
+      // formData.append('imageUrl', this.bookForm.get('imageUrl')?.value);
+
+      //Book book = new Bo
 
       if (this.bookForm.valid) {
-        console.log(formData);
+        //console.log(formData);
 
-        //   for (var pair of formData.entries()) {
+        //   for (var pair of formData..entries()) {
         //     console.log(pair[0] + ', ' + pair[1]);
         //   }
 
-        console.log(JSON.stringify(formData.getAll('isbn')));
-        console.log(JSON.stringify(formData));
+        //   console.log(JSON.stringify(formData.getAll('isbn')));
+        //   console.log(JSON.stringify(formData));
 
-        this.bookService.createBook(formData).subscribe({
+        this.bookService.createBook(this.bookForm.value).subscribe({
           next: (res) => {
+            console.log(this.bookForm.value);
+            console.log(res);
             this.openSnackBar('Book added successfully.');
             this.bookForm.reset();
             this.dialogRef.close();
@@ -114,25 +113,26 @@ export class BookManagementDialogComponent implements OnInit {
   }
 
   updateBook() {
-    var formData: any = new FormData();
-    formData.append('isbn', this.bookForm.get('isbn')?.value);
-    formData.append('title', this.bookForm.get('title')?.value);
-    formData.append('author', this.bookForm.get('author')?.value);
-    formData.append('publisher', this.bookForm.get('publisher')?.value);
-    formData.append('publish_date', this.bookForm.get('publish_date')?.value);
-    formData.append('genre', this.bookForm.get('genre')?.value);
-    formData.append('status', this.bookForm.get('status')?.value);
-    formData.append('image_url', this.bookForm.get('image_url')?.value);
+    //  var formData: any = new FormData();
+    //  formData.append('isbn', this.bookForm.get('isbn')?.value);
+    //  formData.append('title', this.bookForm.get('title')?.value);
+    //  formData.append('author', this.bookForm.get('author')?.value);
+    //  formData.append('publisher', this.bookForm.get('publisher')?.value);
+    //  formData.append('publishDate', this.bookForm.get('publishDate')?.value);
+    //  formData.append('genre', this.bookForm.get('genre')?.value);
+    //  formData.append('imageUrl', this.bookForm.get('imageUrl')?.value);
 
-    this.bookService.updateBook(this.editData.id, formData).subscribe({
-      next: (res) => {
-        this.openSnackBar('Book updated successfully.');
-        this.bookForm.reset();
-        this.dialogRef.close();
-      },
-      error: (err) => {
-        alert(err.error);
-      },
-    });
+    this.bookService
+      .updateBook(this.editData.id, this.bookForm.value)
+      .subscribe({
+        next: (res) => {
+          this.openSnackBar('Book updated successfully.');
+          this.bookForm.reset();
+          this.dialogRef.close();
+        },
+        error: (err) => {
+          alert(err.error);
+        },
+      });
   }
 }

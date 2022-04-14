@@ -118,7 +118,7 @@ export class ManagerComponent implements OnInit {
   deleteBook(id: number) {
     this.bookService.deleteBook(id).subscribe({
       next: (res) => {
-        this.openSnackBar('Book deleted successfully.');
+        this.openSnackBar(res);
         this.getAllBooks();
       },
       error: (err) => {

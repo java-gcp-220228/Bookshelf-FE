@@ -24,15 +24,17 @@ export class BookService {
     return this.http.get<any>(URL + '/books');
   }
 
-  deleteBook(bookId: number) {
-    return this.http.delete<any>(URL + '/books/' + bookId);
-  }
-
   createBook(data: any) {
     return this.http.post<any>(URL + '/books', data, httpOptions);
   }
 
   updateBook(bookId: number, data: any) {
     return this.http.put<any>(URL + '/books/' + bookId, data);
+  }
+
+  deleteBook(bookId: number) {
+    return this.http.delete(URL + '/books/' + bookId, {
+      responseType: 'text',
+    });
   }
 }
