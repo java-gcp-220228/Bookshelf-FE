@@ -29,13 +29,7 @@ export class BookService {
   }
 
   createBook(data: any) {
-    console.log(JSON.parse(JSON.stringify(data)));
-    return this.http.post<any>(
-      URL + '/books',
-      //JSON.parse(JSON.stringify(data)),
-      data,
-      httpOptions
-    );
+    return this.http.post<any>(URL + '/books', data, httpOptions);
   }
 
   updateBook(bookId: number, data: any) {
