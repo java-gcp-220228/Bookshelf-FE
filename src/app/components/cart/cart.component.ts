@@ -113,7 +113,7 @@ export class CartComponent implements OnInit {
   }
 
   checkOut(){
-    this.rentService.postRents(this.cartService.getItemsInCart());
+    this.rentService.postRents(this.cartService.getItemsInCartID());
     this.cartService.clearCart();
     this.router.navigate(['rents'])
   }

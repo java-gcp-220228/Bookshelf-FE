@@ -50,7 +50,6 @@ export class RentsComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    this.rentService.getALLRentsByID();
     this.getAllRents;
   }
 

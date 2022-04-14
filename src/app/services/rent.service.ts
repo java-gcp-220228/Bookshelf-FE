@@ -12,9 +12,9 @@ export class RentService {
   constructor(private http: HttpClient,
     private userService: UserService) { }
 
-  postRents(obj : any) { //create a rent
+  postRents(books : any) { //create a rent
     console.log("posted rents");
-    return this.http.post<any>(URL + '/rents', obj);
+    return this.http.post<any>(URL + '/rents', books);
     
   }
 
