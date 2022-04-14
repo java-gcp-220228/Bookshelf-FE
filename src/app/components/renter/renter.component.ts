@@ -5,6 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BookService } from 'src/app/services/book.service';
 import { CartService } from 'src/app/services/cart.service';
+import { AvailibityPipe } from 'src/app/pipes/availibity.pipe';
 import { Router } from '@angular/router';
 import {
   ConfirmDialogComponent,
