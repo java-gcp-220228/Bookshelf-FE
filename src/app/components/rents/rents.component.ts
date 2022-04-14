@@ -1,11 +1,12 @@
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { BookService } from 'src/app/services/book.service';
-import { CartService } from 'src/app/services/cart.service';
+import { RentService } from 'src/app/services/rent.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 import {
   ConfirmDialogComponent,
   ConfirmDialogModel,
@@ -17,11 +18,11 @@ import {
 } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-renter',
-  templateUrl: './renter.component.html',
-  styleUrls: ['./renter.component.css']
+  selector: 'app-rents',
+  templateUrl: './rents.component.html',
+  styleUrls: ['./rents.component.css']
 })
-export class RenterComponent implements OnInit {
+export class RentsComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
@@ -41,20 +42,20 @@ export class RenterComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
-    private bookService: BookService,
-    private cartServie: CartService,
+    private rentService : RentService,
+    private userService : UserService,
     private router: Router,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
-  ) {}
+  ){}
 
   ngOnInit(): void {
-    this.getAllBooks();
+    this.getAllRents;
   }
-  
 
-  getAllBooks(): any {
-    this.bookService.getAllBooks().subscribe({
+  getAllRents(): any {
+    console.log('User' + this.userService.getUser());
+    this.rentService.getALLRentsByID().subscribe({
       next: (res: any) => {
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
@@ -81,7 +82,6 @@ export class RenterComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
   editRequest(row: any) {}
 
   confirmDialog(id: number, isbn: number, title: string, author: string, publisher: string, 
@@ -97,8 +97,8 @@ export class RenterComponent implements OnInit {
       .afterClosed()
       .subscribe((result) => {
         if (result === true) {
-          this.rentBook(id, isbn, title, author, publisher, publish_date, genre, status);
-          this.getAllBooks();
+         // this.rentBook(id, isbn, title, author, publisher, publish_date, genre, status);
+         // this.getAllBooks();
         }
       });
   }
@@ -116,30 +116,9 @@ export class RenterComponent implements OnInit {
     console.log("is enabled")
   }
 
-  rentBook(id: number, isbn: number,title: string, author: string, publisher: string, 
-    publish_date: string, genre: string, status: string) {
-    if(status !== "Available") {
-      return;
-    }
-    
-    if(this.cartServie.addToRentQueue(id, isbn, title, author, publisher, publish_date, genre, status)){
-      this.openSnackBar('Added to cart successfully.');
-    } else {
-      this.openSnackBar('Item already in cart')
-    };/*.subscribe({
-      next: (res) => {
-        //add to rent books queue array
-        
-        this.openSnackBar('Added to cart successfully.');
-      },
-      error: (err) => {
-        this.openSnackBar(err.error);
-      },
-    });*/
-  }
-  toCart(){
-      this.router.navigate(['cart'])
-  }
   
-  
+  backTORenter(){
+      this.router.navigate(['renter'])
+  }
+
 }

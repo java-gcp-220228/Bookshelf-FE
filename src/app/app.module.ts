@@ -19,11 +19,19 @@ import { ManagerComponent } from './components/manager/manager.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { RoleGuard } from './guards/role.guard';
 import { ConfirmDialogComponent } from './components/confirm-dialog/confirm-dialog.component';
+<<<<<<< HEAD
 import { BookManagementDialogComponent } from './components/book-management-dialog/book-management-dialog.component';
 import { RentManagementComponent } from './components/rent-management/rent-management.component';
 import { RentDetailManagementComponent } from './components/rent-detail-management/rent-detail-management.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+=======
+import { AvailibityPipe } from './pipes/availibity.pipe';
+import { CartComponent } from './components/cart/cart.component';
+import { RentsComponent } from './components/rents/rents.component';
+
+
+>>>>>>> browser
 
 @NgModule({
   declarations: [
@@ -36,10 +44,18 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     ManagerComponent,
     ForbiddenComponent,
     ConfirmDialogComponent,
+<<<<<<< HEAD
     BookManagementDialogComponent,
     RentManagementComponent,
     RentDetailManagementComponent,
     SidebarComponent,
+=======
+    AvailibityPipe,
+    CartComponent,
+    RentsComponent,
+    
+
+>>>>>>> browser
   ],
   imports: [
     BrowserModule,

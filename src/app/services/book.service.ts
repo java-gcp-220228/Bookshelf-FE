@@ -37,4 +37,12 @@ export class BookService {
       responseType: 'text',
     });
   }
+
+  rentBook(id: number) {
+    return this.http.get<any>(URL + '/books');
+    // return this.http.put<any>(URL + '/rent/' + id); //todo needs to follow the proper backend naming
+  }
+  rentedBooks(UserId: number) {
+    return this.http.get<any>(URL + 'rented/' + UserId); // todo need proper backend naming
+  }
 }
