@@ -53,14 +53,17 @@ export class CartService {
 
   ids = Array <{id: Number}>();
   getItemsInCartID(){
+    console.log("does it error here");
     for(let index in this.cart){
       this.ids[index].id = this.cart[index].id;
     }
+    console.log("does it error here?");
     
     return this.ids;
   }
 
   clearCart(){
     this.cart = [];
+    this.ids = [];
   }
 }

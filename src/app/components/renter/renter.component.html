@@ -68,7 +68,7 @@
       <ng-container matColumnDef="status">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>STATUS</th>
         <td mat-cell *matCellDef="let row">
-          {{ row.status }}
+          {{ row.status.status }}
         </td>
       </ng-container>
   
@@ -76,8 +76,8 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>ACTIONS</th>
         <td mat-cell *matCellDef="let row">
-          <button mat-raised-button disabled='{{[(row.status)] | availibity}}' color="warn" (click)="confirmDialog(row.id, row.isbn,
-          row.title, row.author, row.publisher, row. publish_date, row.genre, row.status) ">
+          <button mat-raised-button disabled='{{[(row.status.status)] | availibity}}' color="warn" (click)="confirmDialog(row.id, row.isbn,
+          row.title, row.author, row.publisher, row. publish_date, row.genre, row.status.status) ">
             <mat-icon>add_shopping_cart</mat-icon>
             Add to Cart
           </button>

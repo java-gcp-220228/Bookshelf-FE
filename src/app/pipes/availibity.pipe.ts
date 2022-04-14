@@ -6,7 +6,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class AvailibityPipe implements PipeTransform {
 
   transform(value: any, ...args: unknown[]): Boolean {
-    if(value == 'Available'){
+    
+    console.log(value[0]);
+    if(value =='Available'){
       return false
     }
     return true;
