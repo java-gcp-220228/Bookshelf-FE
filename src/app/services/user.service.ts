@@ -25,7 +25,7 @@ export class UserService {
 
   public getUser(): any {
     const user = localStorage.getItem(USER_KEY);
-    if (user) {
+    if (user && user !== undefined) {
       return JSON.parse(user);
     }
 
@@ -40,10 +40,10 @@ export class UserService {
     return this.getUser() && this.getToken();
   }
 
-  public getRole() {
+  public getRoleId() {
     const user = localStorage.getItem(USER_KEY);
     if (user) {
-      return JSON.parse(user).userRole.id;
+      return JSON.parse(user).role.id;
     }
   }
 }

@@ -55,11 +55,11 @@
         </ng-container>
 
         <!-- publish_date column -->
-        <ng-container matColumnDef="publish_date">
+        <ng-container matColumnDef="publishDate">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>
             PUBLISH DATE
           </th>
-          <td mat-cell *matCellDef="let row">{{ row.publish_date }}</td>
+          <td mat-cell *matCellDef="let row">{{ row.publishDate }}</td>
         </ng-container>
 
         <!-- genre column -->
@@ -74,7 +74,7 @@
         <ng-container matColumnDef="status">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>STATUS</th>
           <td mat-cell *matCellDef="let row">
-            {{ row.status }}
+            {{ row.status.status }}
           </td>
         </ng-container>
 
@@ -82,11 +82,7 @@
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef mat-sort-header>ACTIONS</th>
           <td mat-cell *matCellDef="let row">
-            <button
-              mat-raised-button
-              color="primary"
-              (click)="editRequest(row)"
-            >
+            <button mat-raised-button color="primary" (click)="editBook(row)">
               <mat-icon>edit</mat-icon>
               Edit
             </button>

@@ -52,6 +52,7 @@ export class BookManagementDialogComponent implements OnInit {
       //this.receiptUrl = this.editData.reimbursementReceipt;
 
       this.bookForm.controls['isbn'].setValue(this.editData.isbn);
+      this.bookForm.controls['title'].setValue(this.editData.title);
       this.bookForm.controls['author'].setValue(this.editData.author);
       this.bookForm.controls['publisher'].setValue(this.editData.publisher);
       this.bookForm.controls['publish_date'].setValue(
@@ -85,6 +86,15 @@ export class BookManagementDialogComponent implements OnInit {
       formData.append('image_url', this.bookForm.get('image_url')?.value);
 
       if (this.bookForm.valid) {
+        console.log(formData);
+
+        //   for (var pair of formData.entries()) {
+        //     console.log(pair[0] + ', ' + pair[1]);
+        //   }
+
+        console.log(JSON.stringify(formData.getAll('isbn')));
+        console.log(JSON.stringify(formData));
+
         this.bookService.createBook(formData).subscribe({
           next: (res) => {
             this.openSnackBar('Book added successfully.');

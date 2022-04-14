@@ -27,7 +27,7 @@ export class RoleGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    const role = this.userService.getRole();
+    const role = this.userService.getRoleId();
     const expectedRole = route.data['expectedRole'];
 
     if (this.userService.isLoggedIn()) {

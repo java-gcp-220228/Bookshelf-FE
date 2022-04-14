@@ -29,7 +29,7 @@ export class ManagerComponent implements OnInit {
     'title',
     'author',
     'publisher',
-    'publish_date',
+    'publishDate',
     'genre',
     'status',
     'actions',
@@ -77,7 +77,17 @@ export class ManagerComponent implements OnInit {
     }
   }
 
-  editRequest(row: any) {}
+  editBook(row: any) {
+    this.dialog
+      .open(BookManagementDialogComponent, {
+        width: '50%',
+        data: row,
+      })
+      .afterClosed()
+      .subscribe((value) => {
+        this.getAllBooks();
+      });
+  }
 
   confirmDialog(id: number) {
     const message = 'Are you sure you want to delete this book?';

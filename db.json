@@ -30,13 +30,15 @@
       "publish_date": "01/06/2008",
       "genre": "Fantasy",
       "status": "Available",
-      "image_url": "https://covers.openlibrary.org/b/id/11416466-L.jpg",
       "id": 4
+    },
+    {
+      "id": 5
     }
   ],
   "users": [
     {
-      "emailId": "tienle@gmail.com",
+      "email": "tienle@gmail.com",
       "password": "$2a$10$EECYCXb3irYxKzoXZQrPN.t6VRaK1XWPyWFex.cuYC6/44DNYc2ku",
       "first_name": "Tien",
       "last_name": "Le",
@@ -46,7 +48,7 @@
       "id": 1
     },
     {
-      "emailId": "johndoe@gmail.com",
+      "email": "johndoe@gmail.com",
       "password": "$2a$10$i.DhTBj3FkxB6hlRg7J6zuoQMawxNdgoGBahtpd1bansxVH/6hCQ6",
       "first_name": "John",
       "last_name": "Doe",
@@ -56,7 +58,7 @@
       "id": 2
     },
     {
-      "emailId": "janedoe@gmail.com",
+      "email": "janedoe@gmail.com",
       "password": "$2a$10$gsJb072JjkCIIwR6OlCaMuaRc5kqHdlpCYU7UmBfJ42wtgC08o1pW",
       "first_name": "Jane",
       "last_name": "Doe",
@@ -66,7 +68,7 @@
       "id": 3
     },
     {
-      "emailId": "jenob@gmail.com",
+      "email": "jenob@gmail.com",
       "password": "123456",
       "first_name": "Jenob",
       "last_name": "Job",
@@ -74,6 +76,16 @@
       "phone": "2547896521",
       "role_id": 1,
       "id": 5
+    },
+    {
+      "email": "test@gmail.com",
+      "password": "$2a$10$AbwvqfJiVnOamNJQaqy.zenmcNEtQ6jJOwkhZ6jiLWgYQIA08YAyi",
+      "first_name": "test",
+      "last_name": "testy",
+      "address": "123 abc",
+      "phone": "1234567890",
+      "role_id": 2,
+      "id": 6
     }
   ]
 }

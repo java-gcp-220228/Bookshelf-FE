@@ -22,8 +22,8 @@ export class NavComponent implements OnInit {
   }
 
   public getUserFullName() {
-    const fistName = this.userService.getUser().first_name;
-    const lastName = this.userService.getUser().last_name;
+    const fistName = this.userService.getUser().firstName;
+    const lastName = this.userService.getUser().lastName;
     return fistName + ' ' + lastName;
   }
 }

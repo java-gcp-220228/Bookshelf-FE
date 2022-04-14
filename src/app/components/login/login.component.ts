@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
     // if user logged in before then redirect to renter or manager page
     // based on their role (remember user login using localstorage)
     if (this.userService.isLoggedIn()) {
-      const roleId = this.userService.getUser().role_id;
+      const roleId = this.userService.getRoleId();
       if (roleId === 1) {
         this.router.navigate(['/manager']);
       } else {
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
 
     // if user is not logged in then show them the login page
     this.loginForm = this.formBuilder.group({
-      emailId: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
@@ -63,7 +63,8 @@ export class LoginComponent implements OnInit {
           this.userService.setToken(res.headers.get('token'));
           this.userService.setUser(res.body);
 
-          const role = res.body.userRole.id;
+          //  const role = res.body.userRole.id;
+          const role = res.body.role.id;
           if (role === 1) {
             this.router.navigate(['/manager']);
           } else {

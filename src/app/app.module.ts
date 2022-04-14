@@ -12,7 +12,7 @@ import { AngularMaterialModule } from './angular-material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { UserService } from './services/user.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import { RenterComponent } from './components/renter/renter.component';
 import { ManagerComponent } from './components/manager/manager.component';
@@ -23,6 +23,7 @@ import { BookManagementDialogComponent } from './components/book-management-dial
 import { RentManagementComponent } from './components/rent-management/rent-management.component';
 import { RentDetailManagementComponent } from './components/rent-detail-management/rent-detail-management.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,15 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     HttpClientModule,
     MatDialogModule,
   ],
-  providers: [RoleGuard, UserService],
+  providers: [
+    RoleGuard,
+    UserService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
