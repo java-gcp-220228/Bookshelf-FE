@@ -50,4 +50,8 @@ export class CartService {
   getItemsInCart(){
     return this.cart;
   }
+
+  clearCart(){
+    this.cart = [];
+  }
 }

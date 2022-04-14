@@ -1,12 +1,12 @@
+
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { BookService } from 'src/app/services/book.service';
-import { CartService } from 'src/app/services/cart.service';
 import { RentService } from 'src/app/services/rent.service';
 import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
 import {
   ConfirmDialogComponent,
   ConfirmDialogModel,
@@ -18,11 +18,11 @@ import {
 } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-cart',
-  templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  selector: 'app-rents',
+  templateUrl: './rents.component.html',
+  styleUrls: ['./rents.component.css']
 })
-export class CartComponent implements OnInit {
+export class RentsComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
@@ -41,24 +41,39 @@ export class CartComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(    
-    private bookService: BookService,
-    private cartService: CartService,
-    private rentService: RentService,
+  constructor(
+    private rentService : RentService,
+    private userService : UserService,
     private router: Router,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
-    ) { }
+  ){}
 
   ngOnInit(): void {
-    this.getAllBooks();
+    this.rentService.getALLRentsByID();
+    this.getAllRents;
   }
-  rentedBooks: number[] = [2,3];
 
-  getAllBooks(): any {
-    let fullcart = this.cartService.getItemsInCart();
-    this.dataSource = new MatTableDataSource(this.cartService.getItemsInCart());
+  getAllRents(): any {
+    console.log('User' + this.userService.getUser());
+    this.rentService.getALLRentsByID().subscribe({
+      next: (res: any) => {
+        this.dataSource = new MatTableDataSource(res);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.paginator.pageSize = 10;        
+        
+        this.sort.sort({
+          id: 'id',
+          start: 'desc',
+          disableClear: false,
+        });
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+    });
   }
+
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     console.log(filterValue);
@@ -68,11 +83,11 @@ export class CartComponent implements OnInit {
       this.dataSource.paginator.firstPage();
     }
   }
-
   editRequest(row: any) {}
 
-  confirmDialog(id: number) {
-    const message = 'Are you sure you want to remove this book?';
+  confirmDialog(id: number, isbn: number, title: string, author: string, publisher: string, 
+    publish_date: string, genre: string, status: string) {
+    const message = 'Are you sure you want to check out this book?';
     const dialogData = new ConfirmDialogModel('Confirm Add', message);
     this.dialog
       .open(ConfirmDialogComponent, {
@@ -83,8 +98,8 @@ export class CartComponent implements OnInit {
       .afterClosed()
       .subscribe((result) => {
         if (result === true) {
-          this.removeBook(id);
-          this.getAllBooks();
+         // this.rentBook(id, isbn, title, author, publisher, publish_date, genre, status);
+         // this.getAllBooks();
         }
       });
   }
@@ -102,25 +117,9 @@ export class CartComponent implements OnInit {
     console.log("is enabled")
   }
 
-  removeBook(id: number) {
-
-    if(this.cartService.removeFromRentQueue(id)){
-      this.openSnackBar('Removed from Shopping Cart')
-    } else {
-      this.openSnackBar('Could not remove')
-    };
-    
+  
+  backTORenter(){
+      this.router.navigate(['renter'])
   }
-
-  checkOut(){
-    this.rentService.postRents(this.cartService.getItemsInCart());
-    this.cartService.clearCart();
-    this.router.navigate(['rents'])
-  }
-
-  returnTorenterPage(){
-    this.router.navigate(['renter'])
-  }
-
 
 }

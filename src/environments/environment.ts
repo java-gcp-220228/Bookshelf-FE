@@ -7,6 +7,7 @@ export const environment = {
 
   // backend url
   //BACKEND_URL: 'http://34.67.142.65:9002',
+  //BACKEND_URL: 'http://34.135.17.185:5432',
   BACKEND_URL: 'http://localhost:3000',
 };
 
