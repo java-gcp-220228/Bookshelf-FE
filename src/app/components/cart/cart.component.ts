@@ -5,7 +5,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { BookService } from 'src/app/services/book.service';
 import { CartService } from 'src/app/services/cart.service';
-import { AvailibityPipe } from 'src/app/pipes/availibity.pipe';
+import { RentService } from 'src/app/services/rent.service';
 import { Router } from '@angular/router';
 import {
   ConfirmDialogComponent,
@@ -18,11 +18,11 @@ import {
 } from '@angular/material/snack-bar';
 
 @Component({
-  selector: 'app-renter',
-  templateUrl: './renter.component.html',
-  styleUrls: ['./renter.component.css']
+  selector: 'app-cart',
+  templateUrl: './cart.component.html',
+  styleUrls: ['./cart.component.css']
 })
-export class RenterComponent implements OnInit {
+export class CartComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
 
@@ -41,38 +41,24 @@ export class RenterComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(
+  constructor(    
     private bookService: BookService,
-    private cartServie: CartService,
+    private cartService: CartService,
+    private rentService: RentService,
     private router: Router,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
-  ) {}
+    ) { }
 
   ngOnInit(): void {
     this.getAllBooks();
   }
-  
+  rentedBooks: number[] = [2,3];
 
   getAllBooks(): any {
-    this.bookService.getAllBooks().subscribe({
-      next: (res: any) => {
-        this.dataSource = new MatTableDataSource(res);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.paginator.pageSize = 10;        
-        
-        this.sort.sort({
-          id: 'id',
-          start: 'desc',
-          disableClear: false,
-        });
-      },
-      error: (err: any) => {
-        console.log(err);
-      },
-    });
+    let fullcart = this.cartService.getItemsInCart();
+    this.dataSource = new MatTableDataSource(this.cartService.getItemsInCart());
   }
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     console.log(filterValue);
@@ -85,9 +71,8 @@ export class RenterComponent implements OnInit {
 
   editRequest(row: any) {}
 
-  confirmDialog(id: number, isbn: number, title: string, author: string, publisher: string, 
-    publish_date: string, genre: string, status: string) {
-    const message = 'Are you sure you want to check out this book?';
+  confirmDialog(id: number) {
+    const message = 'Are you sure you want to remove this book?';
     const dialogData = new ConfirmDialogModel('Confirm Add', message);
     this.dialog
       .open(ConfirmDialogComponent, {
@@ -98,7 +83,7 @@ export class RenterComponent implements OnInit {
       .afterClosed()
       .subscribe((result) => {
         if (result === true) {
-          this.rentBook(id, isbn, title, author, publisher, publish_date, genre, status);
+          this.removeBook(id);
           this.getAllBooks();
         }
       });
@@ -117,30 +102,25 @@ export class RenterComponent implements OnInit {
     console.log("is enabled")
   }
 
-  rentBook(id: number, isbn: number,title: string, author: string, publisher: string, 
-    publish_date: string, genre: string, status: string) {
-    if(status !== "Available") {
-      return;
-    }
-    
-    if(this.cartServie.addToRentQueue(id, isbn, title, author, publisher, publish_date, genre, status)){
-      this.openSnackBar('Added to cart successfully.');
+  removeBook(id: number) {
+
+    if(this.cartService.removeFromRentQueue(id)){
+      this.openSnackBar('Removed from Shopping Cart')
     } else {
-      this.openSnackBar('Item already in cart')
-    };/*.subscribe({
-      next: (res) => {
-        //add to rent books queue array
-        
-        this.openSnackBar('Added to cart successfully.');
-      },
-      error: (err) => {
-        this.openSnackBar(err.error);
-      },
-    });*/
+      this.openSnackBar('Could not remove')
+    };
+    
   }
-  toCart(){
-      this.router.navigate(['cart'])
+
+  checkOut(){
+    this.rentService.postRents(this.cartService.getItemsInCartID());
+    this.cartService.clearCart();
+    this.router.navigate(['rents'])
   }
-  
-  
+
+  returnTorenterPage(){
+    this.router.navigate(['renter'])
+  }
+
+
 }

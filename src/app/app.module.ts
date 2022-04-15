@@ -24,6 +24,11 @@ import { RentManagementComponent } from './components/rent-management/rent-manag
 import { RentDetailManagementComponent } from './components/rent-detail-management/rent-detail-management.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { AvailibityPipe } from './pipes/availibity.pipe';
+import { CartComponent } from './components/cart/cart.component';
+import { RentsComponent } from './components/rents/rents.component';
+
+
 
 @NgModule({
   declarations: [
@@ -37,9 +42,15 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     ForbiddenComponent,
     ConfirmDialogComponent,
     BookManagementDialogComponent,
+    BookManagementDialogComponent,
     RentManagementComponent,
     RentDetailManagementComponent,
     SidebarComponent,
+    AvailibityPipe,
+    CartComponent,
+    RentsComponent,
+    
+
   ],
   imports: [
     BrowserModule,
