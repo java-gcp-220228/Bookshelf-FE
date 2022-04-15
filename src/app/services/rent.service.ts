@@ -1,8 +1,19 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { UserService } from './user.service';
+
+const URL = environment.BACKEND_URL;
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json',
+  }),
+
+  // return the response as a HTTPResponse instead of the body only by default
+  observe: 'response' as 'response',
+};
 
 @Injectable({
   providedIn: 'root'
@@ -13,8 +24,9 @@ export class RentService {
     private userService: UserService) { }
 
   postRents(books : any) { //create a rent
-    console.log("posted rents");
-    return this.http.post<any>(URL + '/rents', books);
+    let obj = {managerId: 1, renterId: this.userService.getUser().id, bookIds: books};
+    console.log(obj);
+    return this.http.post<any>(URL + '/rents', obj, httpOptions);
     
   }
 

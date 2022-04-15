@@ -1,20 +1,25 @@
-<div style="display: flex">
-    <div style="width: 100%">
-      <mat-form-field appearance="standard">
-        <mat-label>Search</mat-label>
-        <input
-          matInput
-          (keyup)="applyFilter($event)"
-          placeholder="Ex. Mia"
-          #input
-        />
-      </mat-form-field>
+
+  <div class="flex flex-row w-screen gap-5 px-10">
+    
+    <div class="flex flex-col w-5/6">
+      <div class="flex flex-row w-full gap-5 justify-center items-center">
+        <mat-form-field appearance="standard">
+          <mat-label>Search</mat-label>
+          <input
+            matInput
+            (keyup)="applyFilter($event)"
+            placeholder="Ex. Mia"
+            #input
+          />
+        </mat-form-field>
+              
+        <button mat-raised-button style="float: right; height: 50px;" color="warn" (click)="toCart()">
+          <mat-icon>shopping_cart</mat-icon>
+          check Out
+        </button>
+      </div>
     </div>
   </div>
-  <button mat-raised-button style="float: right;" color="warn" (click)="toCart()">
-    <mat-icon>shopping_cart</mat-icon>
-    check Out
-  </button>
   
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource" matSort>

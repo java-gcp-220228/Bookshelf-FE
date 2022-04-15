@@ -113,9 +113,18 @@ export class CartComponent implements OnInit {
   }
 
   checkOut(){
-    this.rentService.postRents(this.cartService.getItemsInCartID());
-    this.cartService.clearCart();
-    this.router.navigate(['rents'])
+    this.rentService.postRents(this.cartService.getItemsInCartID()).subscribe({
+      next:(res) => {
+        this.openSnackBar('Book rented successfully.');
+        this.cartService.clearCart();
+        this.router.navigate(['rents'])
+      },
+      error: (err) => {
+        this.openSnackBar('Could not rent books: '+ err.error);
+      }
+    });
+    
+    
   }
 
   returnTorenterPage(){

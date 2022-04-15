@@ -9,7 +9,7 @@ import { Title } from '@angular/platform-browser';
 export class CartService {
   cart = Array<{id: number; isbn: number, title: string
   ,publisher: string, publish_date: string, genre: string, status: string, }>();
-
+  ids : number[]= [];
   constructor() { }
 
   addToRentQueue(id: number, isbn: number, title: string, author: string, publisher: string, 
@@ -22,12 +22,11 @@ export class CartService {
       if(value.id === book.id){
         
         matchFound = true;
-      } else {
-        console.log("no match")
       }
     })
     if(matchFound === false){
       this.cart.push(book);
+      
       console.log(this.cart)
       return true;
     } else {
@@ -51,13 +50,13 @@ export class CartService {
     return this.cart;
   }
 
-  ids = Array <{id: Number}>();
+  
   getItemsInCartID(){
     console.log("does it error here");
     for(let index in this.cart){
-      this.ids[index].id = this.cart[index].id;
+      this.ids[index] = this.cart[index].id;
     }
-    console.log("does it error here?");
+    console.log(this.ids);
     
     return this.ids;
   }
