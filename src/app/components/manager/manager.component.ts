@@ -14,6 +14,7 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import { BookManagementDialogComponent } from '../book-management-dialog/book-management-dialog.component';
+import { AutomaticEntryDialogComponent } from '../automatic-entry-dialog/automatic-entry-dialog.component';
 
 @Component({
   selector: 'app-manager',
@@ -127,9 +128,20 @@ export class ManagerComponent implements OnInit {
     });
   }
 
-  openDialog() {
+  openManualEntryDialog() {
     this.dialog
       .open(BookManagementDialogComponent, {
+        width: '50%',
+      })
+      .afterClosed()
+      .subscribe((value) => {
+        this.getAllBooks();
+      });
+  }
+
+  openAutomaticEntryDialog() {
+    this.dialog
+      .open(AutomaticEntryDialogComponent, {
         width: '50%',
       })
       .afterClosed()

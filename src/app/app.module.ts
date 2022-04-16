@@ -27,7 +27,9 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AvailibityPipe } from './pipes/availibity.pipe';
 import { CartComponent } from './components/cart/cart.component';
 import { RentsComponent } from './components/rents/rents.component';
-import { RenterSidebarComponent } from './components/renter-sidebar/renter-sidebar.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { AutomaticEntryDialogComponent } from './components/automatic-entry-dialog/automatic-entry-dialog.component';
+import { BookItemComponent } from './components/book-item/book-item.component';
 
 
 
@@ -50,7 +52,9 @@ import { RenterSidebarComponent } from './components/renter-sidebar/renter-sideb
     AvailibityPipe,
     CartComponent,
     RentsComponent,
-    RenterSidebarComponent,
+    FooterComponent,
+    AutomaticEntryDialogComponent,
+    BookItemComponent,
     
 
   ],

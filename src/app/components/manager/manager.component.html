@@ -13,9 +13,21 @@
           />
         </mat-form-field>
       </div>
-      <div>
-        <button mat-raised-button color="primary" (click)="openDialog()">
-          New Book
+      <div class="flex">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="openManualEntryDialog()"
+        >
+          Manual Entry
+        </button>
+        <button
+          style="width: 140px"
+          mat-raised-button
+          color="primary"
+          (click)="openAutomaticEntryDialog()"
+        >
+          Automatic Entry
         </button>
       </div>
     </div>

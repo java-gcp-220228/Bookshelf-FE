@@ -4,6 +4,12 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 const URL = environment.BACKEND_URL;
+const CORS = 'https://cors-anywhere.herokuapp.com/';
+//const CORS = 'https://app.cors.bridged.cc/';
+const OL_URL = CORS + 'https://openlibrary.org/api/books?bibkeys=ISBN:';
+const FORMAT = '&format=json&jscmd=data';
+const GENRE_URL = CORS + 'https://openlibrary.org/books/'; //OL1017798M.json'
+const DESC_URL = CORS + 'https://openlibrary.org/works/'; //OL53919W.json'
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -19,6 +25,18 @@ const httpOptions = {
 })
 export class BookService {
   constructor(private http: HttpClient) {}
+
+  getDescription(bookWork: string): Observable<any> {
+    return this.http.get<any>(DESC_URL + bookWork + '.json');
+  }
+
+  getGenre(bookOL: string): Observable<any> {
+    return this.http.get<any>(GENRE_URL + bookOL + '.json');
+  }
+
+  searchBooks(isbn: string): Observable<any> {
+    return this.http.get<any>(OL_URL + isbn + FORMAT);
+  }
 
   getAllBooks(): Observable<any> {
     return this.http.get<any>(URL + '/books');

@@ -12,7 +12,6 @@ import {
 } from '@angular/material/snack-bar';
 import { BookService } from 'src/app/services/book.service';
 import { UserService } from 'src/app/services/user.service';
-import { Book } from 'src/app/models/book.model';
 
 @Component({
   selector: 'app-book-management-dialog',
@@ -71,27 +70,7 @@ export class BookManagementDialogComponent implements OnInit {
 
   addBook() {
     if (!this.editData) {
-      // var formData: FormData = new FormData();
-      // formData.append('isbn', this.bookForm.get('isbn')?.value);
-      // formData.append('title', this.bookForm.get('title')?.value);
-      // formData.append('author', this.bookForm.get('author')?.value);
-      // formData.append('publisher', this.bookForm.get('publisher')?.value);
-      // formData.append('publishDate', this.bookForm.get('publishDate')?.value);
-      // formData.append('genre', this.bookForm.get('genre')?.value);
-      // formData.append('imageUrl', this.bookForm.get('imageUrl')?.value);
-
-      //Book book = new Bo
-
       if (this.bookForm.valid) {
-        //console.log(formData);
-
-        //   for (var pair of formData..entries()) {
-        //     console.log(pair[0] + ', ' + pair[1]);
-        //   }
-
-        //   console.log(JSON.stringify(formData.getAll('isbn')));
-        //   console.log(JSON.stringify(formData));
-
         this.bookService.createBook(this.bookForm.value).subscribe({
           next: (res) => {
             console.log(this.bookForm.value);
@@ -113,15 +92,6 @@ export class BookManagementDialogComponent implements OnInit {
   }
 
   updateBook() {
-    //  var formData: any = new FormData();
-    //  formData.append('isbn', this.bookForm.get('isbn')?.value);
-    //  formData.append('title', this.bookForm.get('title')?.value);
-    //  formData.append('author', this.bookForm.get('author')?.value);
-    //  formData.append('publisher', this.bookForm.get('publisher')?.value);
-    //  formData.append('publishDate', this.bookForm.get('publishDate')?.value);
-    //  formData.append('genre', this.bookForm.get('genre')?.value);
-    //  formData.append('imageUrl', this.bookForm.get('imageUrl')?.value);
-
     this.bookService
       .updateBook(this.editData.id, this.bookForm.value)
       .subscribe({
