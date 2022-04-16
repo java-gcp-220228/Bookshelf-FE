@@ -1,0 +1,37 @@
+<div class="flex flex-col">
+  <div class="text-2xl mb-5">Search for Books</div>
+  <div mat-dialog-content>
+    <div class="flex gap-5 justify-start items-center">
+      <mat-form-field appearance="fill" class="w-60">
+        <mat-label>Search by ISBN</mat-label>
+        <input matInput type="text" [(ngModel)]="isbn" />
+        <button
+          *ngIf="isbn"
+          matSuffix
+          mat-icon-button
+          aria-label="Clear"
+          (click)="isbn = ''"
+        >
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <button mat-raised-button color="warn" (click)="searchBookByTitle()">
+        Search
+      </button>
+    </div>
+    <div *ngIf="(bookItem | json) != '{}'">
+      <app-book-item [bookItem]="bookItem"></app-book-item>
+    </div>
+  </div>
+
+  <div mat-dialog-actions [align]="'end'">
+    <button
+      style="margin-left: 10px"
+      mat-raised-button
+      color="primary"
+      mat-dialog-close
+    >
+      Close
+    </button>
+  </div>
+</div>

@@ -23,7 +23,7 @@ table {
 
 .mat-raised-button {
   width: 120px;
-  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .mat-row:nth-child(even) {

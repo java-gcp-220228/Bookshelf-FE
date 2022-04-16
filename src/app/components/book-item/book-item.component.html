@@ -1,0 +1,23 @@
+<mat-card class="bg-slate-200 my-3">
+  <div class="flex w-full gap-5">
+    <div class="flex w-1/6 flex-col gap-3">
+      <img src="{{ bookItem.imageUrl }}" class="w-full rounded-md" />
+      <button mat-raised-button color="primary" (click)="addBook()">
+        Add Book
+      </button>
+    </div>
+    <div class="w-5/6">
+      <div class="flex flex-col">
+        <div class="text-2xl">{{ bookItem.title }}</div>
+        <div class="text-lg text-gray-600">{{ bookItem.author }}</div>
+        <div class="flex gap-3 my-5">
+          <div class="text-sm">ISBN: {{ bookItem.isbn }}</div>
+          <div class="text-sm">Publisher: {{ bookItem.publisher }}</div>
+          <div class="text-sm">Publish Date: {{ bookItem.publishDate }}</div>
+          <div class="text-sm">Genre: {{ bookItem.genre }}</div>
+        </div>
+        <div>{{ bookItem.description }}</div>
+      </div>
+    </div>
+  </div>
+</mat-card>
