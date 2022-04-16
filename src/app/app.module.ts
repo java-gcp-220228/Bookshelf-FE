@@ -27,6 +27,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { AvailibityPipe } from './pipes/availibity.pipe';
 import { CartComponent } from './components/cart/cart.component';
 import { RentsComponent } from './components/rents/rents.component';
+import { RenterSidebarComponent } from './components/renter-sidebar/renter-sidebar.component';
 
 
 
@@ -49,6 +50,7 @@ import { RentsComponent } from './components/rents/rents.component';
     AvailibityPipe,
     CartComponent,
     RentsComponent,
+    RenterSidebarComponent,
     
 
   ],
