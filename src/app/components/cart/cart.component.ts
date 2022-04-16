@@ -114,6 +114,7 @@ export class CartComponent implements OnInit {
   }
 
   checkOut(){
+    console.log("book num: " + this.cartService.getItemsInCartID());
     this.rentService.postRents(this.cartService.getItemsInCartID()).subscribe({
       next:(res) => {
         this.openSnackBar('Book rented successfully.');
