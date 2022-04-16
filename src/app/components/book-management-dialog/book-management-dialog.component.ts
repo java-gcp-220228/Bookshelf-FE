@@ -92,17 +92,21 @@ export class BookManagementDialogComponent implements OnInit {
   }
 
   updateBook() {
-    this.bookService
-      .updateBook(this.editData.id, this.bookForm.value)
-      .subscribe({
-        next: (res) => {
-          this.openSnackBar('Book updated successfully.');
-          this.bookForm.reset();
-          this.dialogRef.close();
-        },
-        error: (err) => {
-          alert(err.error);
-        },
-      });
+    if (this.bookForm.valid) {
+      this.bookService
+        .updateBook(this.editData.id, this.bookForm.value)
+        .subscribe({
+          next: (res) => {
+            this.openSnackBar('Book updated successfully.');
+            this.bookForm.reset();
+            this.dialogRef.close();
+          },
+          error: (err) => {
+            alert(err.error);
+          },
+        });
+    } else {
+      this.openSnackBar('Please enter all of the requirement fields.');
+    }
   }
 }
