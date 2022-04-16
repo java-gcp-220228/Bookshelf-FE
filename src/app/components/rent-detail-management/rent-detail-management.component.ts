@@ -11,6 +11,10 @@ import { MatTableDataSource } from '@angular/material/table';
 import { RentDetailService } from 'src/app/services/rent-detail.service';
 import { RentService } from 'src/app/services/rent.service';
 import { UserService } from 'src/app/services/user.service';
+import {
+  ConfirmDialogComponent,
+  ConfirmDialogModel,
+} from '../confirm-dialog/confirm-dialog.component';
 
 interface Rent {
   value: string;
@@ -82,12 +86,10 @@ export class RentDetailManagementComponent implements OnInit {
 
   onStatusChange() {
     this.getAllRentDetailsByRentId(this.selectedRentId);
-    //console.log(this.selectedRentId);
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    console.log(filterValue);
     this.dataSource.filter = filterValue.trim().toLowerCase();
 
     if (this.dataSource.paginator) {
@@ -98,7 +100,6 @@ export class RentDetailManagementComponent implements OnInit {
   getAllRentDetailsByRentId(rentId: number) {
     this.rentDetailService.getAllRentDetailsByRentId(rentId).subscribe({
       next: (res) => {
-        console.log(res);
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
         this.dataSource.paginator.pageSize = 10;
@@ -113,5 +114,34 @@ export class RentDetailManagementComponent implements OnInit {
         console.log(err);
       },
     });
+  }
+
+  returnBook(rentDetailId: number) {
+    this.rentDetailService.returnBookByRentDetailId(rentDetailId).subscribe({
+      next: (res) => {
+        this.openSnackBar(res);
+        this.getAllRentDetailsByRentId(this.selectedRentId);
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  }
+
+  confirmDialog(id: number) {
+    const message = 'Are you sure you want to return this book?';
+    const dialogData = new ConfirmDialogModel('Confirm Return', message);
+    this.dialog
+      .open(ConfirmDialogComponent, {
+        maxWidth: '400px',
+        data: dialogData,
+        disableClose: true,
+      })
+      .afterClosed()
+      .subscribe((result) => {
+        if (result === true) {
+          this.returnBook(id);
+        }
+      });
   }
 }

@@ -14,4 +14,14 @@ export class RentDetailService {
   getAllRentDetailsByRentId(rentId: number): Observable<any> {
     return this.http.get<any>(URL + '/rent-details/' + rentId);
   }
+
+  returnBookByRentDetailId(rentDetailId: number) {
+    return this.http.post(
+      URL + '/rent-details/' + rentDetailId,
+      {},
+      {
+        responseType: 'text',
+      }
+    );
+  }
 }

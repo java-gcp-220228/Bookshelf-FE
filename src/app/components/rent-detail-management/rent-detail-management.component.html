@@ -88,7 +88,7 @@
               FINE AMOUNT
             </th>
             <td mat-cell *matCellDef="let row">
-              {{ row.fineAmount }}
+              {{ row.fineAmount | currency }}
             </td>
           </ng-container>
 
@@ -97,20 +97,13 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header>ACTIONS</th>
             <td mat-cell *matCellDef="let row">
               <button
-                *ngIf="row.reimbursementStatus === 'Pending'"
+                *ngIf="row.returnDate === null"
                 mat-raised-button
-                color="success"
+                color="primary"
+                (click)="confirmDialog(row.id)"
               >
-                <mat-icon>check_circle</mat-icon>
-                APPROVE
-              </button>
-              <button
-                *ngIf="row.reimbursementStatus === 'Pending'"
-                mat-raised-button
-                color="warn"
-              >
-                <mat-icon>highlight_off</mat-icon>
-                DENY
+                <mat-icon>assignment_return</mat-icon>
+                Return
               </button>
             </td>
           </ng-container>
