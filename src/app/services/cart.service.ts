@@ -1,34 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 //import { title } from 'process';
+import { UserService } from './user.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
-  cart = Array<{id: number; isbn: number, title: string
-  ,publisher: string, publish_date: string, genre: string, status: string, }>();
-
+  cart = Array<{id: number; isbn: number, title: string, author : string
+  ,publisher: string, publishDate: string, genre: string, status: string, }>();
+  ids : number[]= [];
   constructor() { }
 
   addToRentQueue(id: number, isbn: number, title: string, author: string, publisher: string, 
-    publish_date: string, genre: string, status: string){
-      let book = {id: id,  isbn: isbn, title: title ,publisher: publisher,
-         publish_date: publish_date, genre: genre, status: status, };
+    publishDate: string, genre: string, status: string){
+      let book = {id: id,  isbn: isbn, title: title , author: author, publisher: publisher,
+         publishDate: publishDate, genre: genre, status: status, };
     //console.log(book);
     let matchFound = false;
     this.cart.forEach(function(value){
       if(value.id === book.id){
         
         matchFound = true;
-      } else {
-        console.log("no match")
       }
     })
     if(matchFound === false){
       this.cart.push(book);
-      console.log(this.cart)
+      
+      //console.log(this.cart)
       return true;
     } else {
       return false;
@@ -51,13 +51,13 @@ export class CartService {
     return this.cart;
   }
 
-  ids = Array <{id: Number}>();
+  
   getItemsInCartID(){
     console.log("does it error here");
     for(let index in this.cart){
-      this.ids[index].id = this.cart[index].id;
+      this.ids[index] = this.cart[index].id;
     }
-    console.log("does it error here?");
+    console.log(this.ids);
     
     return this.ids;
   }

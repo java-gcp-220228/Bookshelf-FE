@@ -7,7 +7,7 @@ export class AvailibityPipe implements PipeTransform {
 
   transform(value: any, ...args: unknown[]): Boolean {
     
-    console.log(value[0]);
+
     if(value =='Available'){
       return false
     }

@@ -1,17 +1,24 @@
-<div style="display: flex">
-    <div style="width: 100%">
-      <button mat-raised-button style="float: left;" color="warn" (click)="returnTorenterPage()">
-        <mat-icon>keyboard_backspace</mat-icon>
-        return
-      </button>
-      
-        <button mat-raised-button style="float: right;" color="warn" (click)="checkOut()">
-            <mat-icon>check_circle</mat-icon>
-            check Out
-          </button>
-      
+<div class="flex flex-row w-screen gap-5 px-10">
+  
+  <div class="flex flex-col w-5/6">
+    <div class="flex flex-row w-full gap-5 justify-center items-center">
+
     </div>
   </div>
+</div>
+<div style="display: flex">
+  <div style="width: 100%">
+    <button mat-raised-button style="float: left;" color="warn" (click)="returnTorenterPage()">
+      <mat-icon>keyboard_backspace</mat-icon>
+      return
+    </button>
+    <button mat-raised-button style="float: right;" color="warn" (click)="checkOut()">
+        <mat-icon>check_circle</mat-icon>
+        check Out
+    </button>
+    
+  </div>
+</div>
 
   
   <div class="mat-elevation-z8">
@@ -49,9 +56,9 @@
       </ng-container>
   
       <!-- publish_date column -->
-      <ng-container matColumnDef="publish_date">
+      <ng-container matColumnDef="publishDate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>PUBLISH DATE</th>
-        <td mat-cell *matCellDef="let row">{{ row.publish_date }}</td>
+        <td mat-cell *matCellDef="let row">{{ row.publishDate }}</td>
       </ng-container>
   
       <!-- genre column -->

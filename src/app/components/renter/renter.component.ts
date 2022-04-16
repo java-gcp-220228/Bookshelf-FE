@@ -31,7 +31,7 @@ export class RenterComponent implements OnInit {
     'title',
     'author',
     'publisher',
-    'publish_date',
+    'publishDate',
     'genre',
     'status',
     'actions',

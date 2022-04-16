@@ -30,6 +30,7 @@ import { RentsComponent } from './components/rents/rents.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AutomaticEntryDialogComponent } from './components/automatic-entry-dialog/automatic-entry-dialog.component';
 import { BookItemComponent } from './components/book-item/book-item.component';
+import { RenterSidebarComponent } from './components/renter-sidebar/renter-sidebar.component';
 
 
 
@@ -55,6 +56,7 @@ import { BookItemComponent } from './components/book-item/book-item.component';
     FooterComponent,
     AutomaticEntryDialogComponent,
     BookItemComponent,
+    RenterSidebarComponent,
     
 
   ],
