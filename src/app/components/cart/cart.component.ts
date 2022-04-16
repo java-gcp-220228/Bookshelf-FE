@@ -31,7 +31,7 @@ export class CartComponent implements OnInit {
     'title',
     'author',
     'publisher',
-    'publish_date',
+    'publishDate',
     'genre',
     'status',
     'actions',
@@ -57,6 +57,7 @@ export class CartComponent implements OnInit {
 
   getAllBooks(): any {
     let fullcart = this.cartService.getItemsInCart();
+
     this.dataSource = new MatTableDataSource(this.cartService.getItemsInCart());
   }
   applyFilter(event: Event) {
