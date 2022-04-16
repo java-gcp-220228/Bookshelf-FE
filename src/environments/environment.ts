@@ -3,12 +3,12 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
+  production: false,
 
   // backend url
-  BACKEND_URL: 'http://34.67.142.65:9002',
+  //BACKEND_URL: 'http://34.67.142.65:9002',
   //BACKEND_URL: 'http://34.135.17.185:5432',
-  //BACKEND_URL: 'http://localhost:9002',
+  BACKEND_URL: 'http://localhost:9002',
 };
 
 /*
