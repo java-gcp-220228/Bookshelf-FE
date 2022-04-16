@@ -35,6 +35,6 @@ export class RentService {
   }
 
   getALLRentsByID(): Observable<any>{ //get all rents (for renter)
-    return this.http.get<any>(URL + '/rents' + this.userService.getUser().id); //replace 1 with users id number
+    return this.http.get<any>(URL + '/rents/' + this.userService.getUser().id); //replace 1 with users id number
   }
 }

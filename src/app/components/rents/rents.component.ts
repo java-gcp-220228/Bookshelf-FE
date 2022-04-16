@@ -6,6 +6,7 @@ import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { RentService } from 'src/app/services/rent.service';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { RentDetailsService } from 'src/app/services/rent-details.service';
 import {
   ConfirmDialogComponent,
   ConfirmDialogModel,
@@ -15,6 +16,7 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+//import { nextTick } from 'process';
 
 @Component({
   selector: 'app-rents',
@@ -43,28 +45,43 @@ export class RentsComponent implements OnInit {
   constructor(
     private rentService : RentService,
     private userService : UserService,
+    private rentDetailService : RentDetailsService,
     private router: Router,
     private dialog: MatDialog,
     private snackBar: MatSnackBar
   ){}
 
   ngOnInit(): void {
-    this.getAllRents;
+    this.getAllRents();
   }
 
+
   getAllRents(): any {
-    console.log('User' + this.userService.getUser());
+    console.log('User' + this.userService.getUser().id);
+    
     this.rentService.getALLRentsByID().subscribe({
       next: (res: any) => {
-        this.dataSource = new MatTableDataSource(res);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.paginator.pageSize = 10;        
-        
-        this.sort.sort({
-          id: 'id',
-          start: 'desc',
-          disableClear: false,
-        });
+        console.log("has failed?1")        
+        console.log("datasouce " + res);
+        res.forEach((value : any) =>{
+          console.log(value.id);
+          this.rentDetailService.getAllRentDetailByRentId(value).subscribe({
+            next: (res: any) => {
+              console.log("error?")
+              this.dataSource = new MatTableDataSource(res);
+              this.dataSource.paginator = this.paginator;
+              this.dataSource.paginator.pageSize = 10;
+              this.sort.sort({
+                id: 'id',
+                start: 'desc',
+                disableClear: false,
+              });
+            }, error: (err: any) => {
+              console.log("has failed?2")
+              console.log(err);
+            },
+          })
+        })
       },
       error: (err: any) => {
         console.log(err);
