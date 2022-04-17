@@ -20,7 +20,7 @@ import {
 @Component({
   selector: 'app-renter',
   templateUrl: './renter.component.html',
-  styleUrls: ['./renter.component.css']
+  styleUrls: ['./renter.component.css'],
 })
 export class RenterComponent implements OnInit {
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
@@ -52,15 +52,13 @@ export class RenterComponent implements OnInit {
   ngOnInit(): void {
     this.getAllBooks();
   }
-  
 
   getAllBooks(): any {
     this.bookService.getAllBooks().subscribe({
       next: (res: any) => {
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
-        this.dataSource.paginator.pageSize = 10;        
-        
+        this.dataSource.paginator.pageSize = 10;
         this.sort.sort({
           id: 'id',
           start: 'desc',
@@ -85,8 +83,16 @@ export class RenterComponent implements OnInit {
 
   editRequest(row: any) {}
 
-  confirmDialog(id: number, isbn: number, title: string, author: string, publisher: string, 
-    publish_date: string, genre: string, status: string) {
+  confirmDialog(
+    id: number,
+    isbn: number,
+    title: string,
+    author: string,
+    publisher: string,
+    publish_date: string,
+    genre: string,
+    status: string
+  ) {
     const message = 'Are you sure you want to check out this book?';
     const dialogData = new ConfirmDialogModel('Confirm Add', message);
     this.dialog
@@ -98,7 +104,16 @@ export class RenterComponent implements OnInit {
       .afterClosed()
       .subscribe((result) => {
         if (result === true) {
-          this.rentBook(id, isbn, title, author, publisher, publish_date, genre, status);
+          this.rentBook(
+            id,
+            isbn,
+            title,
+            author,
+            publisher,
+            publish_date,
+            genre,
+            status
+          );
           this.getAllBooks();
         }
       });
@@ -113,21 +128,40 @@ export class RenterComponent implements OnInit {
     });
   }
 
-  testMethod(){
-    console.log("is enabled")
+  testMethod() {
+    console.log('is enabled');
   }
 
-  rentBook(id: number, isbn: number,title: string, author: string, publisher: string, 
-    publish_date: string, genre: string, status: string) {
-    if(status !== "Available") {
+  rentBook(
+    id: number,
+    isbn: number,
+    title: string,
+    author: string,
+    publisher: string,
+    publish_date: string,
+    genre: string,
+    status: string
+  ) {
+    if (status !== 'Available') {
       return;
     }
-    
-    if(this.cartServie.addToRentQueue(id, isbn, title, author, publisher, publish_date, genre, status)){
+
+    if (
+      this.cartServie.addToRentQueue(
+        id,
+        isbn,
+        title,
+        author,
+        publisher,
+        publish_date,
+        genre,
+        status
+      )
+    ) {
       this.openSnackBar('Added to cart successfully.');
     } else {
-      this.openSnackBar('Item already in cart')
-    };/*.subscribe({
+      this.openSnackBar('Item already in cart');
+    } /*.subscribe({
       next: (res) => {
         //add to rent books queue array
         
@@ -138,9 +172,7 @@ export class RenterComponent implements OnInit {
       },
     });*/
   }
-  toCart(){
-      this.router.navigate(['cart'])
+  toCart() {
+    this.router.navigate(['cart']);
   }
-  
-  
 }
