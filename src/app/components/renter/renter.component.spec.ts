@@ -35,10 +35,10 @@ describe('RenterComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should rent a book', () => {
+  /*it('should rent a book', () => {
     mockCartService.addToRentQueue.and.returnValue(of(true))
 
     //expect(mockCartService.addToRentQueue).toBe(true);
     
-  })
+  })*/
 });
