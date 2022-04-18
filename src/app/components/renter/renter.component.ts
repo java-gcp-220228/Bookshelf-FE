@@ -58,7 +58,7 @@ export class RenterComponent implements OnInit {
       next: (res: any) => {
         this.dataSource = new MatTableDataSource(res);
         this.dataSource.paginator = this.paginator;
-        this.dataSource.paginator.pageSize = 10;
+        this.dataSource.paginator.pageSize = 5;
         this.sort.sort({
           id: 'id',
           start: 'desc',
