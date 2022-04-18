@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { RentDetailManagementComponent } from './rent-detail-management.component';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 describe('RentDetailManagementComponent', () => {
   let component: RentDetailManagementComponent;
@@ -8,6 +11,7 @@ describe('RentDetailManagementComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports:[HttpClientTestingModule, MatDialogModule, MatSnackBarModule],
       declarations: [ RentDetailManagementComponent ]
     })
     .compileComponents();
