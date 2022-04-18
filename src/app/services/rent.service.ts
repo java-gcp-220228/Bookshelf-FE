@@ -30,7 +30,7 @@ export class RentService {
     
   }
 
-  getAllRents(): Observable<any> { //get all rents (for admin)
+  getAllRents(): Observable<any> { //get all rents (for admin), not part of mvp
     return this.http.get<any>(URL + '/rents');
   }
 
